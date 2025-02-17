@@ -57,8 +57,24 @@ const renderData = (data) => {
     <h2>${post.title}</h2>
     <p>${post.body}</p>
     <img src="${post.img}" alt="${post.title}">
-    <button id="delete-button" onclick="deleteData(${post.id})">Delete</button>
+    <button id="delete-button" onclick="deleteData('${post.id}')">Delete</button>
     `;
     container.appendChild(postElement);
   });
+};
+//DELETE
+const deleteData = async (id) => {
+  try {
+    const response = await fetch(`http://localhost:3004/posts/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    console.log(data);
+    fetchData();
+  } catch (error) {
+    console.log(error);
+  }
 };
