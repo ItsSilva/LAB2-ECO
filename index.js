@@ -23,12 +23,16 @@ async function fetchData() {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
+
     const formContainer = document.querySelector(".form-container");
     formContainer.style.display = "none";
+
     const buttonPostPage = document.querySelector("#fetch-button");
     buttonPostPage.style.display = "none";
+
     const postButtonDisplay = document.getElementById("post-button");
     postButtonDisplay.style.display = "block";
+
     renderData(data);
     console.log(data);
   } catch (error) {
@@ -39,10 +43,13 @@ async function fetchData() {
 document.getElementById("post-button").addEventListener("click", () => {
   const formContainer = document.querySelector(".form-container");
   formContainer.style.display = "block";
+
   const buttonPostPage = document.querySelector("#fetch-button");
   buttonPostPage.style.display = "block";
+
   const postButtonDisplay = document.getElementById("post-button");
   postButtonDisplay.style.display = "none";
+
   const container = document.getElementById("post-container");
   container.innerHTML = "";
 });
@@ -61,6 +68,14 @@ const postData = async (formData) => {
     }
     const data = await response.json();
     console.log(data);
+
+    const formContainer = document.querySelector(".form-container");
+    formContainer.style.display = "none";
+
+    const postButtonDisplay = document.getElementById("post-button");
+    postButtonDisplay.style.display = "block";
+
+    fetchData();
   } catch (error) {
     console.log(error);
   }
