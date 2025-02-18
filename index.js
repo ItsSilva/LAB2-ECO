@@ -1,19 +1,6 @@
-document.getElementById("fetch-button").addEventListener("click", fetchData);
-
-//GET
-async function fetchData() {
-  try {
-    const response = await fetch("http://localhost:3004/posts");
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const data = await response.json();
-    renderData(data);
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
-}
+//Display Posts Button
+const postButtonDisplay = document.getElementById("post-button");
+postButtonDisplay.style.display = "none";
 //FORM
 const form = document.getElementById("post-form").addEventListener(
   "submit",
@@ -27,6 +14,38 @@ const form = document.getElementById("post-form").addEventListener(
     postData(formData);
   })
 );
+//GET
+document.getElementById("fetch-button").addEventListener("click", fetchData);
+async function fetchData() {
+  try {
+    const response = await fetch("http://localhost:3004/posts");
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    const formContainer = document.querySelector(".form-container");
+    formContainer.style.display = "none";
+    const buttonPostPage = document.querySelector("#fetch-button");
+    buttonPostPage.style.display = "none";
+    const postButtonDisplay = document.getElementById("post-button");
+    postButtonDisplay.style.display = "block";
+    renderData(data);
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+//Display form
+document.getElementById("post-button").addEventListener("click", () => {
+  const formContainer = document.querySelector(".form-container");
+  formContainer.style.display = "block";
+  const buttonPostPage = document.querySelector("#fetch-button");
+  buttonPostPage.style.display = "block";
+  const postButtonDisplay = document.getElementById("post-button");
+  postButtonDisplay.style.display = "none";
+  const container = document.getElementById("post-container");
+  container.innerHTML = "";
+});
 //POST
 const postData = async (formData) => {
   try {
