@@ -1,6 +1,9 @@
 //Display Posts Button
 const postButtonDisplay = document.getElementById("post-button");
 postButtonDisplay.style.display = "none";
+
+const postContainer = document.getElementById("post-container");
+postContainer.style.display = "none";
 //FORM
 const form = document.getElementById("post-form").addEventListener(
   "submit",
@@ -33,6 +36,9 @@ async function fetchData() {
     const postButtonDisplay = document.getElementById("post-button");
     postButtonDisplay.style.display = "block";
 
+    const postContainer = document.getElementById("post-container");
+    postContainer.style.display = "block";
+
     renderData(data);
     console.log(data);
   } catch (error) {
@@ -46,6 +52,9 @@ document.getElementById("post-button").addEventListener("click", () => {
 
   const buttonPostPage = document.querySelector("#fetch-button");
   buttonPostPage.style.display = "block";
+
+  const postContainer = document.getElementById("post-container");
+  postContainer.style.display = "none";
 
   const postButtonDisplay = document.getElementById("post-button");
   postButtonDisplay.style.display = "none";
@@ -75,6 +84,9 @@ const postData = async (formData) => {
     const postButtonDisplay = document.getElementById("post-button");
     postButtonDisplay.style.display = "block";
 
+    const postContainer = document.getElementById("post-container");
+    postContainer.style.display = "block";
+
     fetchData();
   } catch (error) {
     console.log(error);
@@ -87,10 +99,11 @@ const renderData = (data) => {
 
   data.forEach((post) => {
     const postElement = document.createElement("div");
+    postElement.classList.add("post");
     postElement.innerHTML = `
+    <img src="${post.img}" alt="${post.title}">
     <h2>${post.title}</h2>
     <p>${post.body}</p>
-    <img src="${post.img}" alt="${post.title}">
     <button id="delete-button" onclick="deleteData('${post.id}')">Delete</button>
     `;
     container.appendChild(postElement);
