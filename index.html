@@ -3,27 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Fetch API Methods</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
-      #data-container {
-        margin-top: 20px;
-      }
-      .item {
-        margin-bottom: 10px;
-      }
-      img {
-        max-width: 300px;
-        border: 2px solid #ccc;
-        border-radius: 10px;
-      }
-    </style>
   </head>
   <body>
     <section class="form-container">
-      <h1>Fetch GET, POST DELETE</h1>
+      <h1>Create a post!</h1>
       <form id="post-form">
         <label for="title">Title:</label>
         <input
@@ -43,10 +28,10 @@
         <input type="text" id="img" placeholder="Add an image URL." required />
         <button type="submit-form">Submit</button>
       </form>
+      <button id="fetch-button">Go to Post Page</button>
     </section>
-    <section id="post-container"></section>
-    <button id="fetch-button">Go to Post Page</button>
     <button id="post-button">Create a post</button>
+    <section id="post-container"></section>
     <script src="index.js"></script>
   </body>
 </html>
